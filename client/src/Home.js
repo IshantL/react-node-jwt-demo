@@ -10,7 +10,8 @@ export default class Home extends Component {
 
     componentDidMount(){
         fetch('/server/home')
-        .then( res => console.log(res));
+        .then( res => res.text())
+        .then(res=>this.setState({message:res}))
     }
     render(){
         return(

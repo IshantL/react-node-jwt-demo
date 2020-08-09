@@ -1,14 +1,27 @@
 import React,{Component} from 'react';
 
 export default class Secret extends Component {
-    constructor(){
+    constructor() {
         super();
-    }
-    render(){
-        return(
-            <div>
-                <h1>Hi from Secret Component</h1>
-            </div>
-        )
-    }
+        this.state = {
+          message: 'Loading...'
+        }
+      }
+    
+      componentDidMount() {
+        fetch('/server/secret',{
+            headers: { 'x-access-token': localStorage.getItem('token') }
+        })
+          .then(res => res.text())
+          .then(res => this.setState({message: res}));
+      }
+    
+      render() {
+        return (
+          <div>
+            <h1>Secret</h1>
+            <p>{this.state.message}</p>
+          </div>
+        );
+      }
 }

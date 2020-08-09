@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {Redirect} from 'react-router-dom';
 
-export default function withAuth(componentInside){
+export default function withAuth(ComponentInside){
  return class extends Component {
     constructor(){
         super();
@@ -10,18 +10,25 @@ export default function withAuth(componentInside){
             redirect:false
         };
     }
-    componentDidMount(){
-        fetch('/checktoken')
-        .then(res=>{
-            if(res.status === 200){
-                this.setState({loading:false})
+    componentDidMount() {
+        fetch('/checkToken', {
+            credentials: "include",
+            headers: { 'x-access-token': localStorage.getItem('token') }
+        
+        })
+          .then(res => {
+            if (res.status === 200) {
+              this.setState({ loading: false });
+            } else {
+              const error = new Error(res.error);
+              throw error;
             }
-        })
-        .catch(err=>{
-            console.log(err);
-            this.setState({loading:false, redirect:true});
-        })
-    }
+          })
+          .catch(err => {
+            console.error(err);
+            this.setState({ loading: false, redirect: true });
+          });
+      }
 
 
     render(){
@@ -32,7 +39,7 @@ export default function withAuth(componentInside){
         if(redirect){
             return <Redirect to ="/login"/>
         }
-        return <componentInside {...this.props}/>
+        return <ComponentInside {...this.props}/>
     }
 }
 } 

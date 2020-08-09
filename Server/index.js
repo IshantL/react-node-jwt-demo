@@ -45,8 +45,12 @@ app.post('/server/auth', (req,res)=>{
                     const token = jwt.sign(payload, secret, {
                       expiresIn: '1h'
                     });
-                    res.cookie(token, { httpOnly: true }).sendStatus(200);
-                  }
+                    console.log("tokenLL",token);
+                   // res.cookie('token', token, { httpOnly: true }).sendStatus(200);
+                   res.json({
+                    token: token
+                    });
+                }
 
             })
         }
@@ -55,12 +59,16 @@ app.post('/server/auth', (req,res)=>{
 })
 
 const chkToken = (req,res,next)=>{
-    console.log("Hello1",req.query.token);
-    const token = req.body.token || req.headers.cookie;
+    const token =  req.body.token ||
+    req.query.token ||
+    req.headers['x-access-token'] 
+    console.log("OOhre",token)
     if(!token){
         res.status(401).send('Unauthorised');
     }else{
+        console.log("hre",token)
         jwt.verify(token,secret,(err,success)=>{
+            console.log("error",err);
             if(err){
                 res.status(401).send('Unauthorised');
             }else{
@@ -87,3 +95,7 @@ app.post('/server/register', (req,res)=>{
         }
     })
 })
+
+app.get('/server/secret', chkToken, function(req, res) {
+    res.send('Welcome to Secret Component from Server');
+  });

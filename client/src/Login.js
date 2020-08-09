@@ -25,7 +25,13 @@ export default class Login extends Component {
                 'Content-Type':'application/json'
             }
         })
-        .then(res=>console.log(res.status));
+        .then(res=>res.json())
+        .then(user_token=>{
+            let { token } = user_token;
+            localStorage.setItem('token', token);
+            this.props.history.push('/');
+            
+        })
     }
     render(){
         return(

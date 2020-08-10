@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, Route, Switch, BrowserRouter} from 'react-router-dom';
+import {NavLink, Route, Switch, BrowserRouter} from 'react-router-dom';
 import Home from './home/Home';
 import Login from './login/Login';
 import Secret from './secret/Secret';
@@ -11,10 +11,10 @@ import Logout from './logout/Logout';
     <div className="nav">
        <BrowserRouter>
       <ul>
-        <li><Link to ="/">Home</Link></li>
-        <li><Link to ="/secret">Secret</Link></li>
-        <li><Link to ="/login">login</Link></li>
-        <li><Link to ="/logout">logout</Link></li>
+        <li><NavLink  activeClassName="is-active" to ="/">Home</NavLink ></li>
+        <li><NavLink activeClassName="is-active" to ="/secret">Secret</NavLink ></li>
+        <li><NavLink  activeClassName="is-active"  to ="/login">login</NavLink ></li>
+        <li><NavLink  activeClassName="is-active" to ="/logout">logout</NavLink ></li>
       </ul>
       <div className="flex-container">
       <Switch>

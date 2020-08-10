@@ -66,3 +66,7 @@ input[type=button], input[type=submit], input[type=reset] {
   cursor: pointer;
   width: 30%;
 }
+
+li.is-active{
+  background-color: black;
+}

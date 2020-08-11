@@ -8,13 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "bcrypt": "^3.0.0",
-    "body-parser": "^1.18.3",
-    "cookie-parser": "^1.4.3",
-    "express": "^4.16.3",
-    "jsonwebtoken": "^8.3.0",
-    "mongoose": "^5.7.12",
+    "react-scripts": "3.4.1"
     "react-router-dom": "^5.1.2"
   },
   "scripts": {

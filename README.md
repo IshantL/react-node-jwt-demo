@@ -1,12 +1,12 @@
 # Demo for JWT based authentication
 
-## technology used
+## Technology used
 - React
 - Node js
 - Express js
 - My sql
 
-## plan:
+## project Screens/Task:
 - React registration Screen
 - Login Screen
 - Node API creation for registration, login, auth
